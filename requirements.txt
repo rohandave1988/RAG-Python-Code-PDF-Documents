@@ -1,0 +1,15 @@
+# RAG System Requirements - Essential Dependencies
+
+# Core RAG
+chromadb>=0.4.22
+sentence-transformers>=2.2.2
+langchain>=0.1.0
+
+# PDF processing
+pdfplumber>=0.10.0
+
+# HTTP requests for LLM
+requests>=2.31.0
+
+# Basic utilities
+numpy>=1.24.0
