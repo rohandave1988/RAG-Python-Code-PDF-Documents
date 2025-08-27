@@ -115,3 +115,6 @@ Compatible with any Ollama model:
 
 
 
+
+https://github.com/user-attachments/assets/f97ca50d-a111-4137-8034-acf6d5397e0f
+
