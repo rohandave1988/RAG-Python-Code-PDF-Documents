@@ -113,6 +113,81 @@ Compatible with any Ollama model:
 - **chunk_size**: Maximum characters per chunk (default: 1000)
 - **chunk_overlap**: Characters to overlap between chunks (default: 200)
 
+  System Architecture:-
+
+  ### 📊 System Overview Flow
+
+```
+📄 PDF Documents
+    ⬇️
+🔍 PDF Processor 
+    ⬇️
+✂️ Text Chunker
+    ⬇️  
+🧮 Text Embedder
+    ⬇️
+🗄️ Vector Database ←─────┐
+                         │
+❓ User Query            │
+    ⬇️                   │
+🔄 Query Processor       │
+    ⬇️                   │
+🎯 Vector Searcher ──────┘
+    ⬇️
+📚 Similar Documents
+    ⬇️
+🤖 LLM Generator
+    ⬇️
+💬 Final Answer
+```
+
+### 🔄 Component Interaction Flow
+
+**Step-by-Step Process:**
+
+```
+👤 User → "What is total revenue?"
+    ↓
+🔍 RAGSearcher → process_query()
+    ↓
+✨ QueryProcessor → cleaned query
+    ↓
+🎯 VectorSearcher → similarity search
+    ↓
+🗄️ VectorDatabase → top 5 matches
+    ↓
+🤖 LLMGenerator → contextual response
+    ↓
+📊 User ← formatted answer + sources + metadata
+```
+
+Data Flow Architecture
+
+```
+📥 INPUT DATA          🔄 PROCESSING         💾 STORAGE
+┌─────────────┐       ┌─────────────┐       ┌─────────────┐
+│ 📄 PDF Files│ ────► │🔍 Extraction│ ────► │🗄️ Vector DB │
+│ 📝 Text Data│       │✂️ Chunking  │       │📇 Indices   │
+│ 📊 Tables   │       │🧮 Embeddings│       │             │
+└─────────────┘       └─────────────┘       └──────┬──────┘
+                                                   │
+                                                   ▼
+🔍 SEARCH                                  🤖 GENERATION
+┌─────────────┐                          ┌─────────────┐
+│❓ User Query│ ────────────────────────► │🤖 LLM       │
+│🎯 Similarity│                          │💬 Answer    │
+│📋 Context   │                          │             │
+└─────────────┘                          └─────────────┘
+```
+💻 RAG Application
+├── 🗄️ ChromaDB (Embedded)
+├── 🤖 Ollama (Local LLM)
+└── 📁 Local PDF Files
+
+
+  <img width="684" height="295" alt="Rag_Flow_DeepSeek" src="https://github.com/user-attachments/assets/9bcfcd59-35d6-4ea2-ae67-929690d5888c" />
+
+
 
 
 
